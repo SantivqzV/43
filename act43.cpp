@@ -70,7 +70,6 @@ class Graph{
         */
         void addEdge(int i, int j){
             adjList[i].push_back(j);
-            adjList[j].push_back(i);
         }
         /**
          * @brief Convierte el grafo a una representación de cadena para su visualización.
@@ -170,17 +169,30 @@ int main(){
     cout << "Elige la cantidad de unidades de tiempo de propagación" << endl;
     cin >> t;
     Graph g(n);
-    cout << "Crea la matriz de adyacencia" << endl;
+
+    /**
+     * Caso 1
+     * (0,1) (0,2) (1,3) (1,4) (2,5) (2,6) (3,7) (4,8) (5,9)
+    */
+    // int a[] = {0, 0, 1, 1, 2, 2, 3, 4, 5};
+    // int b[] = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+
+    /**
+     * Caso 2
+     * (1,0) (2,4) (3,1) (3,2) (3,4) (3,5) (5,11) (5,13) (5,14) (6,7) (6,8) (9,10) (11,12)
+    */
+    int a[] = {1, 2, 3, 3, 3, 3, 5, 5, 5, 6, 6, 9, 11};
+    int b[] = {0, 4, 1, 2, 4, 5, 11, 13, 14, 7, 8, 10, 12};
+    
     for(int i = 0; i < m; i++){
-        int a, b;
-        cin >> a >> b;
-        g.addEdge(a, b);
+        g.addEdge(a[i], b[i]);
     }
-    cout << "Matriz de adyacencia" << endl;
+
     g.toString();
 
     int start = g.maxPropagacion();
+    cout << "Nodo con mayor propagación: " << start << endl;
 
-    cout << "Nodo más lejano de propagación " << g.propagacion(start,t) << endl;
+    cout << "Nodos infectados " << g.propagacion(start,t) << endl;
     return 0;
 }
