@@ -20,25 +20,57 @@ using namespace std;
 
 /**
  * @class Graph
+ * Representa un grafo utilizando una estructura de lista de adyacencia.
+ *
+ * Esta clase proporciona una representación de un grafo mediante una lista de adyacencia.
+ * El grafo puede ser dirigido o no dirigido, y mantiene un registro de las conexiones entre
+ * los vértices. La clase Graph permite agregar, eliminar y consultar la presencia de aristas
+ * entre los vértices.
 */
 class Graph{
     private:
-        vector<vector<int>> adjList;
-        int numVertices;
+        vector<vector<int>> adjList; /// Lista de adyacencia que almacena las conexiones entre los vértices.
+        int numVertices; /// Número total de vértices en el grafo.
     public:
+        /**
+         * @brief Constructor de la clase Graph.
+         * @param numVertices Número total de vértices en el grafo.
+        */
         Graph(int numVertices){
             this->numVertices = numVertices;
             adjList = vector<vector<int>>(numVertices);
         }
+        /**
+         * @brief Destructor de la clase Graph.
+         * Libera los recursos utilizados por la lista de adyacencia.
+        */
         ~Graph(){
             adjList.clear();
         }
-
+        /**
+         * @brief Agrega una arista al grafo entre los vértices i y j.
+         *
+         * Esta función agrega una arista no dirigida entre los vértices i y j al grafo.
+         *
+         * @param i Primer vértice de la arista.
+         * @param j Segundo vértice de la arista.
+         *
+         * @note Complejidad de tiempo: O(1) - La adición de una arista no requiere recorrer la lista de adyacencia.
+         * @note Complejidad de espacio: O(1) - No se asignan nuevas estructuras de datos en función de la entrada.
+        */
         void addEdge(int i, int j){
             adjList[i].push_back(j);
             adjList[j].push_back(i);
         }
-
+        /**
+         * @brief Convierte el grafo a una representación de cadena para su visualización.
+         *
+         * Esta función imprime la representación del grafo como una lista de adyacencia, donde cada línea
+         * muestra los vértices adyacentes al vértice correspondiente.
+         *
+         * @note Complejidad de tiempo: O(V + E), donde V es el número de vértices y E es el número de aristas.
+         * @note Complejidad de espacio: O(1) - No se asignan nuevas estructuras de datos en función de la entrada.
+        */
         void toString(){
             for(int i = 0; i < numVertices; i++){
                 cout << i << ": ";
@@ -48,7 +80,21 @@ class Graph{
                 cout << endl;
             }
         }
-
+        /**
+         * @brief Realiza una propagación desde el vértice de inicio hasta el tiempo especificado.
+         *
+         * Esta función realiza una propagación desde el vértice de inicio hasta el tiempo especificado t.
+         * Se utiliza una cola para explorar los vecinos en función del tiempo y contar los vértices alcanzables
+         * dentro del límite de tiempo.
+         *
+         * @param start Vértice de inicio para la propagación.
+         * @param t Tiempo límite para la propagación.
+         *
+         * @return El número de vértices alcanzables dentro del límite de tiempo t.
+         *
+         * @note Complejidad de tiempo: O(V + E), donde V es el número de vértices y E es el número de aristas.
+         * @note Complejidad de espacio: O(V) - Se utiliza una estructura de datos de tamaño V (cola y vector de visitados).
+        */
         int propagacion(int start, int t){
             vector<bool> visited(numVertices, false);
             queue<pair<int,int>> q;
