@@ -7,10 +7,20 @@
  * Fecha de creación: 11/11/2023
  * Fecha de modificación: 11/11/2023
  * 
- * Descripción:
+ * Descripción: 
+ * Programa para la propagación en un grafo utilizando una lista de adyacencia.
+ *
+ * Este programa tiene como objetivo crear un grafo no dirigido a partir de una cantidad especificada
+ * de nodos y aristas. Luego, realiza una propagación desde un nodo de inicio hasta un tiempo específico
+ * utilizando una estructura de cola para explorar los nodos alcanzables dentro del límite de tiempo.
+ * Finalmente, muestra el nodo más lejano alcanzado durante la propagación.
+ *
+ * El programa utiliza la clase Graph, que representa un grafo mediante una lista de adyacencia.
  * 
  * Referencias:
- * 
+ * M, G. P. (2023, May 18). Explicación de algoritmos y estructuras de datos de grafos con Ejemplos en Java y C++. freeCodeCamp.org. https://www.freecodecamp.org/espanol/news/explicacion-de-algoritmos-y-estructuras-de-datos-de-grafos-con-ejemplos-en-java-y-c/
+ * GRAFOS. (n.d.). https://ccia.ugr.es/~jfv/ed1/c++/cdrom4/paginaWeb/grafos.htm
+ * GeeksforGeeks. (2023h, August 1). Graph and its representations. https://www.geeksforgeeks.org/graph-and-its-representations/
 */
 #include <iostream>
 #include <stack>
