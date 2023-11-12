@@ -90,6 +90,35 @@ class Graph{
                 cout << endl;
             }
         }
+
+        int maxPropagacion(){
+            int maxCount = 0;
+            int inicio = -1;
+            for(int i = 0; i < numVertices; i++){
+                vector<bool> visited(numVertices, false);
+                queue<int> q;
+                q.push(i);
+                visited[i] = true;
+                int count = 0;
+                while(!q.empty()){
+                    int current = q.front();
+                    q.pop();
+                    count++;
+                    for(int j = 0; j < adjList[current].size(); j++){
+                        if(!visited[adjList[current][j]]){
+                            q.push(adjList[current][j]);
+                            visited[adjList[current][j]] = true;
+                        }
+                    }
+                }
+                if(count > maxCount){
+                    maxCount = count;
+                    inicio = i;
+                }
+            }
+            return inicio;
+        }
+
         /**
          * @brief Realiza una propagación desde el vértice de inicio hasta el tiempo especificado.
          *
@@ -150,6 +179,8 @@ int main(){
     cout << "Matriz de adyacencia" << endl;
     g.toString();
 
-    cout << "Nodo más lejano de propagación " << g.propagacion(0,t) << endl;
+    int start = g.maxPropagacion();
+
+    cout << "Nodo más lejano de propagación " << g.propagacion(start,t) << endl;
     return 0;
 }
