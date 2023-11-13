@@ -89,10 +89,21 @@ class Graph{
                 cout << endl;
             }
         }
-
+        /**
+         * @brief Encuentra el nodo con la máxima propagación en el grafo.
+         *
+         * Esta función realiza un recorrido en anchura (BFS) desde cada nodo del grafo y determina
+         * cuántos nodos puede alcanzar. El nodo de inicio que produce la máxima cantidad de nodos
+         * alcanzados se considera el nodo con la máxima propagación.
+         *
+         * @return El índice del nodo que tiene la máxima propagación en el grafo.
+         *
+         * @note Complejidad de tiempo: O(V * (V + E)), donde V es el número de vértices y E es el número de aristas.
+         * @note Complejidad de espacio: O(V) - Se utiliza una estructura de datos de tamaño V (cola y vector de visitados).
+        */
         int maxPropagacion(){
-            int maxCount = 0;
-            int inicio = -1;
+            int maxCount = 0; // Máxima cantidad de nodos alcanzados
+            int inicio = -1;  // Nodo de inicio que produce la máxima propagación
             for(int i = 0; i < numVertices; i++){
                 vector<bool> visited(numVertices, false);
                 queue<int> q;
